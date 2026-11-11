@@ -1,4 +1,4 @@
- Infos zu dieser Website:
+Infos zu dieser Website:
 Diese Website besteht nur aus HTML und CSS!
 Es wurde kein Bisschen JavaScript benutzt.
 Die Website besteht nur aus index.html und style.css. 

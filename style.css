@@ -1,0 +1,326 @@
+@import url("https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&display=swap");
+
+:root {
+    color-scheme: light;
+    --accent-color: color-mix(Canvas 80%, #7f7f7f 20%);
+}
+
+body {
+    font-family: "IBM Plex Sans";
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+th {
+    font-family: "Fira Sans";
+}
+
+table,
+td,
+th {
+    border: 1px solid CanvasText;
+    border-collapse: collapse;
+    padding: 0.5rem;
+}
+
+input.material-symbols-outlined {
+    margin: 0;
+}
+
+.inline-image>.image-container {
+    display: none;
+    margin-inline-start: 1rem;
+    margin-block-end: 1rem;
+    float: right;
+}
+
+.image-container {
+    display: grid;
+    grid-template-rows: minmax(0, 1fr) auto;
+    max-width: 25ch;
+    max-height: 25ch;
+}
+
+.image-media {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.image-media>img {
+    max-width: 100%;
+    min-height: 0;
+    max-height: 100%;
+}
+
+.image-enlarger {
+    appearance: none;
+}
+
+.image-media>img:hover~.image-enlarger:not(:checked)::after,
+.image-media>.image-enlarger:not(:checked):hover::after {
+    content: "open_in_full";
+    display: flex;
+    position: absolute;
+    width: 2rem;
+    height: 2rem;
+    transform: translateX(-100%);
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+}
+
+.image-enlarger:checked {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 4;
+    background-color: rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+}
+
+.image-media:has(.image-enlarger:checked)>img {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 90vw;
+    max-height: 90vh;
+    z-index: 5;
+}
+
+.sidebar-image {
+    position: absolute;
+}
+
+.sidebar-image:has(.image-enlarger:not(:checked)) {
+    transform: translateY(-10%);
+}
+
+.image-description {
+    margin-top: 1rem;
+}
+
+.image-description * {
+    margin: 0;
+}
+
+a[name="inline-image-basilisk-schildhalter"] {
+    anchor-name: --inline-image-basilisk-schildhalter;
+}
+
+.sidebar-image-basilisk-schildhalter {
+    top: anchor(--inline-image-basilisk-schildhalter top);
+}
+
+a[name="inline-image-dicken-1499"] {
+    anchor-name: --inline-image-dicken-1499;
+}
+
+.sidebar-image-dicken-1499 {
+    top: anchor(--inline-image-dicken-1499 top);
+}
+
+a[name="inline-image-gerberbrunnen-inschrift"] {
+    anchor-name: --inline-image-gerberbrunnen-inschrift;
+}
+
+.sidebar-image-gerberbrunnen-inschrift {
+    top: anchor(--inline-image-gerberbrunnen-inschrift top);
+}
+
+a[name="inline-image-wettsteinbruecke-1900"] {
+    anchor-name: --inline-image-wettsteinbruecke-1900;
+}
+
+.sidebar-image-wettsteinbruecke-1900 {
+    top: anchor(--inline-image-wettsteinbruecke-1900 top);
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        color-scheme: dark;
+    }
+}
+
+.burger-collapser {
+    appearance: none;
+}
+
+@media (max-width: 162ch) {
+    .right-sidebar {
+        display: none;
+    }
+
+    .main-body {
+        padding-inline: 0.5rem;
+    }
+
+    .inline-image>.image-container {
+        display: grid;
+    }
+
+    .burger-collapser::after {
+        display: flex;
+        cursor: pointer;
+        position: fixed;
+        z-index: 1;
+        top: 1.5rem;
+        left: 1.5rem;
+        width: 2rem;
+        aspect-ratio: 1/1;
+        border: 1px solid black;
+        border-radius: 0.25rem;
+        background-color: var(--accent-color);
+        justify-content: center;
+        align-items: center;
+        content: "list";
+    }
+
+    .burger-collapser:checked::after {
+        content: "close";
+    }
+
+    .table-of-contents {
+        position: fixed;
+        z-index: 1;
+        overflow-y: scroll;
+        top: 4rem;
+        left: 1.5rem;
+        max-height: calc(100vh - (4rem + 1.5rem));
+        background: Canvas;
+        box-shadow: 1px 1px 10px color-mix(Canvas 80%, black 20%);
+        transform: translateX(-150%);
+    }
+
+    .left-sidebar {
+        min-width: 0 !important;
+        overflow: hidden;
+    }
+
+    .main-body {
+        max-width: min(66ch, calc(100vw - 1rem));
+        margin: auto;
+        padding-inline: 0.5rem;
+    }
+
+    .left-sidebar:has(.burger-collapser:checked)>.table-of-contents {
+        transform: translateX(0);
+    }
+}
+
+.table-of-contents ul {
+    list-style-type: none;
+}
+
+.table-of-contents>ul {
+    padding: 0;
+}
+
+.toc-link {
+    display: flex;
+    flex-direction: row;
+    height: 1rem;
+    padding: 1rem;
+}
+
+.table-of-contents a {
+    text-decoration: none;
+}
+
+.table-of-contents a:hover {
+    text-decoration: underline;
+    filter: brightness(0.75);
+}
+
+.toc-collapser {
+    appearance: none;
+    cursor: pointer;
+}
+
+.toc-collapser::after {
+    content: "arrow_drop_down";
+}
+
+.toc-collapser:checked::after {
+    content: "arrow_drop_up";
+}
+
+.table-of-contents .toc-link:has(.toc-collapser:checked)+ul {
+    display: none;
+}
+
+body {
+    margin: 0;
+    display: grid;
+    grid-template-columns: 1fr minmax(0, min(66ch, 100vw)) 1fr;
+    container-type: inline-size;
+}
+
+.left-sidebar {
+    grid-column: 1;
+    min-width: 48ch;
+}
+
+.main-body {
+    grid-column: 2;
+}
+
+.right-sidebar {
+    grid-column: 3;
+    padding-left: 2rem;
+}
+
+.footnote-box {
+    margin-top: 2rem;
+}
+
+.footnote-link {
+    font-size: x-small;
+    font-style: italic;
+    vertical-align: super;
+}
+
+.footnote::before {
+    content: "[" attr(footnote-id) "]";
+    font-size: x-small;
+    vertical-align: super;
+    padding-right: 1rem;
+}
+
+.footnotes-divider {
+    display: flex;
+    align-items: center;
+}
+
+.footnotes-divider>hr {
+    height: 0;
+    width: 33%;
+    text-align: left;
+    margin-inline: 0;
+}
+
+.footnotes-collapser {
+    appearance: none;
+    cursor: pointer;
+}
+
+.footnotes-collapser::after {
+    content: "arrow_drop_down";
+}
+
+.footnotes-collapser:checked::after {
+    content: "arrow_drop_up";
+}
+
+.footnotes-divider:has(.footnotes-collapser:checked)+.footnote-container {
+    display: none;
+}
